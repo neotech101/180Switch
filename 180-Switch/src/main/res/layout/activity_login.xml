@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.text_to_speech.login"
+    android:background="@drawable/loginback"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="228dp"
+        android:layout_height="53dp"
+        android:text="Don't have an account? Register here"
+        android:textColor="@color/Black"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="54dp"
+        app:layout_constraintTop_toBottomOf="@+id/signin"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="57dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="Welcome to 180Switch"
+        android:textAllCaps="true"
+        android:textColor="@color/Blue"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="56dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" />
+
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="155dp"
+        android:layout_height="61dp"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="@color/DarkRed"
+        android:textSize="50sp"
+        android:textStyle="italic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="164dp" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/signin"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="105dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="103dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email-ID"
+        android:inputType="textEmailAddress"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintRight_toRightOf="@+id/editText5"
+        android:layout_marginBottom="28dp" />
+
+</android.support.constraint.ConstraintLayout>

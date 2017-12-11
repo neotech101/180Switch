@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "652027466636",
+    "firebase_url": "https://switch-e1142.firebaseio.com",
+    "project_id": "switch-e1142",
+    "storage_bucket": "switch-e1142.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652027466636:android:e5299e7453a317b6",
+        "android_client_info": {
+          "package_name": "com.example.text_to_speech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652027466636-5mfvqrrqvss0lt262osivefadetmbd4j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.text_to_speech",
+            "certificate_hash": "d4e16b9d6718c64e2292886c4387d47a62249865"
+          }
+        },
+        {
+          "client_id": "652027466636-739c47gh869hcq4vlu4n9fs6jok2u2en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmRPmusTs95gK_hVinjus8AgVR2mO20iY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652027466636-739c47gh869hcq4vlu4n9fs6jok2u2en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

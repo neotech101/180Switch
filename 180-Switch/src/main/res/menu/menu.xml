@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/mic"
+        android:title="@string/mic_icon"
+        app:showAsAction="always"
+        android:icon="@drawable/main"/>
+    <item
+        android:id="@+id/help"
+        android:title="@string/help_label"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/exit"
+        android:title="@string/exit"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/out"
+        android:title="@string/out"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/name"
+        android:title="@string/name"
+        app:showAsAction="ifRoom"/>
+
+</menu>

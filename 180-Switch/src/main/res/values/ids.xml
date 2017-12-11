@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="help" type="id">help</item>
+    <item name="exit" type="id">exit</item>
+    <item name="out" type="id">Log Out</item>
+    <item name="name" type="id"> User Email ID</item>
+</resources>
