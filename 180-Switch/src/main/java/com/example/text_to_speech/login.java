@@ -1,3 +1,6 @@
+
+//NewGen Coders - Piyush Rana, Tunde Olokun, Kachail Fahmid
+
 package com.example.text_to_speech;
 
 import android.app.ProgressDialog;
