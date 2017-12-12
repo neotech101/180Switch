@@ -9,7 +9,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import static android.R.attr.name;
 
@@ -50,16 +55,20 @@ public class settings extends AppCompatActivity {
 
                 return true;
             case R.id.name:
-                new AlertDialog.Builder(this).setTitle(R.string.nameinfo)
-                        .setMessage(R.string.nInfo).setCancelable(false)
-                        .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String email = user.getEmail();
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                final TextView useremail = (TextView) findViewById(R.id.name);
+
+                useremail.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        useremail.setText(email);
+                    }
+                });
+
                 return true;
+
             case R.id.exit:
                 new AlertDialog.Builder(this).setTitle(R.string.exit).setMessage(R.string.exitCon).setCancelable(true)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {

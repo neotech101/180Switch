@@ -7,7 +7,7 @@ public class PreferenceManager {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    Context _context;
+    Context context;
 
     // shared pref mode
     int PRIVATE_MODE = 0;
@@ -18,8 +18,8 @@ public class PreferenceManager {
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     public PreferenceManager(Context context) {
-        this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        this.context = context;
+        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 

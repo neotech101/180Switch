@@ -3,14 +3,17 @@
     <string name="mic_icon">mic_icon</string>
     <string name="help_label">Help</string>
     <string name="exit">Exit?</string>
-    <string name="name">User-Email_ID</string>
+    <string name="name">User-ID</string>
     <string name="out">Log Out</string>
     <string name="nameinfo">nameinfo</string>
 
     <string name="ok">ok</string>
     <string name="yes">yes</string>
     <string name="exitCon">Do you want to exit?</string>
-    <string name="no">no</string>
+
+
+    <string name="app_open">Open</string>
+    <string name="app_close">Close</string>
 
 
     <string name="next">NEXT</string>
@@ -23,6 +26,7 @@
     <string name="slide_3_title">Spelling</string>
     <string name="slide_3_desc">Ability to dictate to a program that can automatically spell out the word correctly on-screen. </string>
     <string name="nInfo">nInfo</string>
+    <string name="no">No</string>
 
 
 </resources>

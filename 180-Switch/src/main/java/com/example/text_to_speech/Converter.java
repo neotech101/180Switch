@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,35 +30,26 @@ public class Converter extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     Converter c1;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mTogg;
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-   // @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//
-//        // Checks the orientation of the screen
-//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-//            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int repeat = 1000 ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
-        //getSupportActionBar();
 
-//        if (android.provider.Settings.System.getInt(getContentResolver(),
-//                Settings.System.ACCELEROMETER_ROTATION, 0) == 1){
-//            Toast.makeText(getApplicationContext(), "Rotation ON", Toast.LENGTH_SHORT).show();
-//
-//        }
-//        else{
-//            Toast.makeText(getApplicationContext(), "Rotation OFF", Toast.LENGTH_SHORT).show();
-//        }
+        mDrawerLayout = findViewById(R.id.drawerLayout);
+        mTogg = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.app_open,R.string.app_close);
 
+        mDrawerLayout.addDrawerListener(mTogg);
+        mTogg.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//Creating a firebase instance to access Firebase Authentication
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null)
         {
@@ -171,6 +164,11 @@ public class Converter extends AppCompatActivity {
 
         Intent i = new Intent();
         String Useremail = getIntent().getStringExtra("Username");
+
+        if(mTogg.onOptionsItemSelected(item))
+        {
+            return true;
+        }
 
 
         switch (item.getItemId()) {

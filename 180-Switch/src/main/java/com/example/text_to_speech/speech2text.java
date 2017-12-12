@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -23,15 +28,19 @@ import java.util.Locale;
 
 import static android.R.attr.name;
 
-public class speech2text extends AppCompatActivity {
+public class speech2text extends AppCompatActivity implements View.OnClickListener{
 
     private TextView res ;
+    private Button share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech2text);
         res = (TextView) findViewById(R.id.textView);
+        share = (Button) findViewById(R.id.Share);
+
+        share.setOnClickListener(this);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Toast.makeText(this,"Welcome to speech to text conversion",Toast.LENGTH_SHORT).show();
@@ -70,6 +79,19 @@ public class speech2text extends AppCompatActivity {
             }
         }
 
+    public void onClick(View v) {
+        if (v == share)
+        {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            // String shareBody = "Here is the share content body";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, res.getText().toString());
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,16 +119,20 @@ public class speech2text extends AppCompatActivity {
 
                 return true;
             case R.id.name:
-                new AlertDialog.Builder(this).setTitle(R.string.nameinfo)
-                        .setMessage(R.string.nInfo).setCancelable(false)
-                        .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String email = user.getEmail();
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                final TextView useremail = (TextView) findViewById(R.id.name);
+
+                useremail.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        useremail.setText(email);
+                    }
+                });
+
                 return true;
+
             case R.id.exit:
                 new AlertDialog.Builder(this).setTitle(R.string.exit).setMessage(R.string.exitCon).setCancelable(true)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {

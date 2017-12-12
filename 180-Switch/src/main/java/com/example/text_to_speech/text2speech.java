@@ -14,7 +14,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 
@@ -65,7 +69,7 @@ public class text2speech extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Your device doesn't support this feature", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    //text = editText.getText().toString();
+
                     toSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                     toSpeech.setSpeechRate(1f);
                 }
@@ -133,16 +137,22 @@ public class text2speech extends AppCompatActivity {
 
                 return true;
             case R.id.name:
-                new AlertDialog.Builder(this).setTitle(R.string.nameinfo)
-                        .setMessage(R.string.nInfo).setCancelable(false)
-                        .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String email = user.getEmail();
+
+                final TextView useremail = (TextView) findViewById(R.id.name);
+
+                useremail.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        useremail.setText(email);
+                    }
+                });
+
                 return true;
+
             case R.id.exit:
                 new AlertDialog.Builder(this).setTitle(R.string.exit).setMessage(R.string.exitCon).setCancelable(true)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
