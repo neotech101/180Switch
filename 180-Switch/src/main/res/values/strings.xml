@@ -28,5 +28,19 @@
     <string name="nInfo">nInfo</string>
     <string name="no">No</string>
 
+    <string name="speak">TAP ON THE MIKE TO SPEAK</string>
+    <string name="text">Your Text Goes Here ...</string>
+
+    <string name="register">REGISTER</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="welcome">WELCOME TO 180SWITCH</string>
+    <string name="password">Password</string>
+    <string name="email">Email-ID</string>
+
+    <string name="login">LOGIN</string>
+
+    <string name="settings">SETTINGS </string>
+    <string name="seekbar">Move Seekbar to Set Volume</string>
+
 
 </resources>

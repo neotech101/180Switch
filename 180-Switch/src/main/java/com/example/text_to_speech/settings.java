@@ -6,6 +6,7 @@ package com.example.text_to_speech;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Context;
+import android.media.AudioManager;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +30,10 @@ import static android.R.attr.name;
 
 public class settings extends AppCompatActivity {
 
+    SeekBar seekbar;
+    TextView textview;
+    AudioManager audioManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +41,34 @@ public class settings extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Toast.makeText(this,"Welcome to Settings",Toast.LENGTH_SHORT).show();
+
+        seekbar = (SeekBar)findViewById(R.id.seekBar1);
+        textview = (TextView)findViewById(R.id.textView1);
+
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        seekbar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                textview.setText("Media Volume : " + i);
+
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, i, 0);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     @Override

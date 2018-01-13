@@ -17,6 +17,7 @@
     <color name="MediumSlateBlue">#3418dd</color>
     <color name="Blue">#08084a</color>
     <color name="Black">#000000</color>
+    <color name="light_gray_header_color">#646663</color>
 
     <!-- Screens background color-->
     <color name="bg_slider_screen1">#f4b241</color>
