@@ -47,7 +47,7 @@ public class speech2text extends AppCompatActivity implements View.OnClickListen
         share.setOnClickListener(this);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,"Welcome to speech to text conversion",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Welcome To Speech-To-Text Conversion!",Toast.LENGTH_SHORT).show();
 
         }
         public void buttonclick(View view) {

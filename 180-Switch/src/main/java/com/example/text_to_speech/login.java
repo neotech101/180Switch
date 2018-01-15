@@ -61,7 +61,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         String eid = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        progressDialog.setMessage("Signing user");
+        progressDialog.setMessage("Signing User");
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(eid,pass)
@@ -79,7 +79,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"Invalid E-ID or password",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Invalid E-ID Or Password!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -95,7 +95,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             initialize();
             if(!validate())
             {
-                Toast.makeText(this,"Login has failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Login Has Failed!",Toast.LENGTH_SHORT).show();
             }
             else
             userLogin();
@@ -116,17 +116,17 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         boolean valid = true;
         if(eid.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(eid).matches())
         {
-            email.setError("Invalid Email-ID");
+            email.setError("Invalid Email-ID!");
             valid = false;
         }
         if(pass.isEmpty())
         {
-            password.setError("Please enter Password");
+            password.setError("Please Enter Your Password!");
             valid = false;
         }
         if(pass.length()<8)
         {
-            password.setError("Password must be 8 characters long");
+            password.setError("Password Must be 8 Characters Long!");
             valid = false;
         }
         return valid;

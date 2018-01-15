@@ -4,6 +4,7 @@
 
 package com.example.text_to_speech;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -12,10 +13,12 @@ import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
@@ -39,9 +42,10 @@ public class settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,"Welcome to Settings",Toast.LENGTH_SHORT).show();
+        //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Toast.makeText(this,"Welcome To Settings!",Toast.LENGTH_SHORT).show();
 
         seekbar = (SeekBar)findViewById(R.id.seekBar1);
         textview = (TextView)findViewById(R.id.textView1);

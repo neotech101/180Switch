@@ -44,7 +44,7 @@ public class text2speech extends AppCompatActivity {
         setContentView(R.layout.activity_text2speech);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,"Welcome to text to speech conversion",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Welcome To Text-To-Speech Conversion!",Toast.LENGTH_SHORT).show();
 
         editText = (EditText) findViewById(R.id.editText2);
         toSpeech = new TextToSpeech(this,new TextToSpeech.OnInitListener()

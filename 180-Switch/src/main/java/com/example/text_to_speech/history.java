@@ -56,7 +56,7 @@ public class history extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(history.this));
-        Toast.makeText(this, "Wait while fetching the files..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Your Files Are Being Fetched ..", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -79,7 +79,7 @@ public class history extends AppCompatActivity {
                     public void onClick(final View v)
                     {
                         AlertDialog.Builder builder = new AlertDialog.Builder(history.this);
-                        builder.setMessage("Do you want to delete this data ?").setCancelable(false)
+                        builder.setMessage("Do You Want To Delete This Data?").setCancelable(false)
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which)

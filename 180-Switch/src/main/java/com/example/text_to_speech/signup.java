@@ -78,7 +78,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
         String eid = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        progressDialog.setMessage("Registering user");
+        progressDialog.setMessage("Registering User");
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(eid,pass)
@@ -88,11 +88,11 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                       if(task.isSuccessful())
                       {
                           finish();
-                          Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(),"Registration Successful!",Toast.LENGTH_SHORT).show();
                           startActivity(new Intent(getApplicationContext(),login.class));
                       }else
                       {
-                          Toast.makeText(getApplicationContext(),"Registered failed: Please check your email and password",Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(),"Registered Failed: Please Check Your Email & Password!",Toast.LENGTH_SHORT).show();
 
                       }
                       progressDialog.hide();
@@ -107,7 +107,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
             initialize();
             if(!validate())
             {
-                Toast.makeText(this,"Signup has failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Signup Has Failed!",Toast.LENGTH_SHORT).show();
             }
             else
             registerUser();
@@ -125,17 +125,17 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
         boolean valid = true;
         if(eid.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(eid).matches())
         {
-            email.setError("Invalid Email-ID");
+            email.setError("Invalid Email-ID!");
             valid = false;
         }
         if(pass.isEmpty())
         {
-            password.setError("Please enter Password");
+            password.setError("Please Enter Your Password!");
             valid = false;
         }
         if(pass.length()<8)
         {
-            password.setError("Password must be 8 characters long");
+            password.setError("Password Must be 8 Characters Long!");
             valid = false;
         }
         return valid;
