@@ -7,7 +7,7 @@
     <string name="out">Log Out</string>
     <string name="nameinfo">nameinfo</string>
 
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
     <string name="yes">yes</string>
     <string name="exitCon">Do you want to exit?</string>
 
@@ -28,7 +28,7 @@
     <string name="nInfo">nInfo</string>
     <string name="no">No</string>
 
-    <string name="speak">TAP ON THE MIKE TO SPEAK</string>
+    <string name="speak">TAP ON THE MIC TO SPEAK</string>
     <string name="text">Your Text Goes Here ...</string>
 
     <string name="register">REGISTER</string>
@@ -41,6 +41,11 @@
 
     <string name="settings">SETTINGS </string>
     <string name="seekbar">Move Seekbar to Set Volume</string>
+
+    <string name="upload">UPLOAD </string>
+    <string name="file">NAME OF FILE </string>
+    <string name="select">SELECT A FILE TO UPLOAD </string>
+    <string name="data">SEE DATA </string>
 
 
 </resources>
