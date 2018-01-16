@@ -79,7 +79,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"Invalid E-ID Or Password!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),R.string.Invalid_EIDORPASS,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -95,7 +95,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             initialize();
             if(!validate())
             {
-                Toast.makeText(this,"Login Has Failed!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,R.string.Login_HasFailed,Toast.LENGTH_SHORT).show();
             }
             else
             userLogin();

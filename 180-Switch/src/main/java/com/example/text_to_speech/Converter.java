@@ -4,13 +4,17 @@
 package com.example.text_to_speech;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -29,12 +33,15 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Converter extends AppCompatActivity {
+import java.util.Locale;
+
+public class Converter extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
     Converter c1;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mTogg;
+    Button sett,t2s,s2t,hist,Upload;
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 
@@ -52,11 +59,12 @@ public class Converter extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 //Creating a firebase instance to access Firebase Authentication
         firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() == null)
-        {
-            startActivity(new Intent(this,login.class));
+        if (firebaseAuth.getCurrentUser() == null) {
+            startActivity(new Intent(this, login.class));
             finish();
         }
 
@@ -83,54 +91,36 @@ public class Converter extends AppCompatActivity {
         animator.start();
 
 
-        Button sett,t2s,s2t,hist,Upload;
-
-        Upload = (Button) findViewById(R.id.button);//Upload
-        t2s = (Button) findViewById(R.id.button2);//text to speech
-        s2t = (Button) findViewById(R.id.button3);// speech to text
-       // hist = (Button) findViewById(R.id.button4);// History
-        sett = (Button) findViewById(R.id.button5); //Settings
-
-
-        Upload.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-               startActivity(new Intent(getApplicationContext(),upload.class));
-            }
-        });
-
-        sett.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-               up();
-            }
-        });
-
-
-        t2s.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), text2speech.class);
-                startActivity(i);
-            }
-        });
-
-        s2t.setOnClickListener(new View.OnClickListener() {
-
-
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), speech2text.class);
-                startActivity(i);
-            }
-        });
-
-
+        Upload = findViewById(R.id.button);//Upload
+        t2s = findViewById(R.id.button2);//text to speech
+        s2t = findViewById(R.id.button3);// speech to text
+        hist = findViewById(R.id.button4);// History
+        sett = findViewById(R.id.button5); //Settings
     }
 
-    public void up()
+    public void Settings(View v)
     {
-        Intent i = new Intent(Converter.this, settings.class);
-        startActivity(i);
+        startActivity(new Intent(Converter.this,settings.class));
+    }
+
+    public void History(View v)
+    {
+        startActivity(new Intent(Converter.this,history.class));
+    }
+
+    public void Uploads(View v)
+    {
+        startActivity(new Intent(Converter.this,upload.class));
+    }
+
+    public void text2speech(View v)
+    {
+        startActivity(new Intent(Converter.this,text2speech.class));
+    }
+
+    public void speech2text(View v)
+    {
+        startActivity(new Intent(Converter.this,speech2text.class));
     }
 
     @Override
@@ -138,20 +128,36 @@ public class Converter extends AppCompatActivity {
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(Converter.this);
 
-        builder.setMessage("Do you want to close the app?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.doU_want);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
             }
         });
-        builder.setNegativeButton("No", null);
+        builder.setNegativeButton(R.string.no, null);
 
         AlertDialog alert = builder.create();
         alert.show();
 
     }
-
+    public void changeEn()
+    {
+        Locale locale = new Locale("en");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_converter);
+    }
+    public void changeFr()
+    {Locale locale = new Locale("fr");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_converter);
+    }
 
 
     @Override
@@ -192,6 +198,16 @@ public class Converter extends AppCompatActivity {
         });
 
                 return true;
+            //===========================================================================================================
+            case R.id.language_en:
+                changeEn();
+
+                return true;
+            case R.id.language_fr:
+                changeFr();
+
+                return true;
+            //===========================================================================================================
             case R.id.mic:
                 Intent t2s = new Intent(android.content.Intent.ACTION_VIEW);
                 t2s.setData(Uri.parse("http://searchmobilecomputing.techtarget.com/definition/text-to-speech"));
@@ -233,4 +249,36 @@ public class Converter extends AppCompatActivity {
 //        return false;
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.Upload)
+        {
+            startActivity(new Intent(getApplicationContext(),upload.class));
+        }
+        if (id == R.id.Speech2Text)
+        {
+            startActivity(new Intent(getApplicationContext(),speech2text.class));
+        }
+        if (id == R.id.Text2Speech)
+        {
+            startActivity(new Intent(getApplicationContext(),text2speech.class));
+        }
+        if (id == R.id.History)
+        {
+            startActivity(new Intent(getApplicationContext(),history.class));
+        }
+        if (id == R.id.Settings)
+        {
+            startActivity(new Intent(getApplicationContext(),settings.class));
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
+
+

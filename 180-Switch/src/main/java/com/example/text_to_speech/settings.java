@@ -7,6 +7,7 @@ package com.example.text_to_speech;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.provider.Settings;
@@ -29,6 +30,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Locale;
 
 import static android.R.attr.name;
 
@@ -87,6 +90,7 @@ public class settings extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 finish();
                 return true;

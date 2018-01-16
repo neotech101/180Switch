@@ -3,11 +3,14 @@
 
 package com.example.text_to_speech;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.*;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +19,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,120 +32,86 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class history extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference myRef;
-    private FirebaseRecyclerAdapter<showDataItems,showDataViewHolder> mFirebaseAdapter;
+    private DatabaseReference myRef;
+    //private FirebaseRecyclerAdapter<showDataItems,showDataViewHolder> mFirebaseAdapter;
+
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+    private ListView listView;
+
+    Button btn;
 
     public history()
     {
         // Empty Constructor
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        Toast.makeText(this,"Welcome to History",Toast.LENGTH_SHORT).show();
+        //firebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = FirebaseDatabase.getInstance().getReference().child("User Data");
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference("User Details");
+        //btn = (Button) findViewById(R.id.load);
+        listView = (ListView) findViewById(R.id.database_list_view);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(history.this));
-        Toast.makeText(this, "Your Files Are Being Fetched ..", Toast.LENGTH_SHORT).show();
-    }
+        listView.setAdapter(adapter);
 
-    @Override
-    protected void onStart()
-    {
-        //Toast.makeText(this, "hey hey hey hey " , Toast.LENGTH_SHORT).show();
-        super.onStart();
+        SharedPreferences sPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        final String value = sPreferences.getString("key", "empty");
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<showDataItems,showDataViewHolder>
-                (showDataItems.class,R.layout.show_data_single_item,showDataViewHolder.class,myRef)
-        {
-            public void populateViewHolder(final showDataViewHolder viewHolder,showDataItems mode,final int position)
+        if (value != null)
+            myRef.child("User Data").push().setValue(value);
+
+
+        myRef.child("User Data").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
-                viewHolder.File_URL(getApplicationContext(),mode.getFile_URL());
-                viewHolder.File_Title(mode.getFile_Title());
-
-                //onClick Item
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v)
-                    {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(history.this);
-                        builder.setMessage("Do You Want To Delete This Data?").setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which)
-                                    {
-                                        int selectedItems = position;
-                                        mFirebaseAdapter.getRef(selectedItems).removeValue();
-                                        mFirebaseAdapter.notifyItemRemoved(selectedItems);
-                                        recyclerView.invalidate();
-                                        onStart();
-                                    }
-                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.setTitle("Confirm");
-                        dialog.show();
-                    }
-                });
+                String string = dataSnapshot.getValue().toString();
+                arrayList.add(string);
+                adapter.notifyDataSetChanged();
             }
-        };
 
-        recyclerView.setAdapter(mFirebaseAdapter);
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
-
-    public static class showDataViewHolder extends RecyclerView.ViewHolder
-            {
-                View mView;
-                private final TextView file_title;
-                private final ImageView file_url;
-
-                public showDataViewHolder(View itemView)
-                {
-                    super(itemView);
-                    mView = itemView;
-                    file_url = (ImageView) itemView.findViewById(R.id.fetch_image);
-                    file_title = (TextView) itemView.findViewById(R.id.file_title);
-                }
-
-                private void File_Title(String title)
-                {
-                    file_title.setText(title);
-                }
-
-                public void File_URL(Context context,String image)
-                {
-//                    Glide.with(itemView.getContext())
-//                            .load(title)
-//                            .crossFade()
-//                            .placeholder(R.drawable.download)
-//                            .thumbnail(0.1f)
-//                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                            .into(file_url);
-
-                    Picasso.with(context).load(image).into(file_url);
-                }
-            }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

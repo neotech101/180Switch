@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
@@ -47,7 +49,7 @@ public class speech2text extends AppCompatActivity implements View.OnClickListen
         share.setOnClickListener(this);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,"Welcome To Speech-To-Text Conversion!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.Welcome_s2tConversion,Toast.LENGTH_SHORT).show();
 
         }
         public void buttonclick(View view) {
@@ -63,25 +65,33 @@ public class speech2text extends AppCompatActivity implements View.OnClickListen
             }
             else
             {
-                Toast.makeText(this, "Nah Not possible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Not_possibl, Toast.LENGTH_SHORT).show();
             }
 
         }
 
-        public void onActivityResult(int request_code,int result_code,Intent i)
+    public void onActivityResult(int request_code,int result_code,Intent i)
+    {
+        super.onActivityResult(request_code,result_code,i);
+
+        switch(request_code)
         {
-            super.onActivityResult(request_code,result_code,i);
-
-            switch(request_code)
+            case 10: if(result_code == RESULT_OK && i!=null)
             {
-                case 10: if(result_code == RESULT_OK && i!=null)
-                {
-                    ArrayList<String> result = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    res.setText(result.get(0));
-                }
-                break;
+                ArrayList<String> result = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                res.setText(result.get(0));
+
+                SharedPreferences sPreferences = android.preference.PreferenceManager
+                        .getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sPreferences.edit();
+                editor.putString("key", res.getText().toString());
+
+                editor.commit();
             }
+                break;
         }
+    }
+
 
     public void onClick(View v) {
         if (v == share)
@@ -107,7 +117,9 @@ public class speech2text extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 finish();
                 return true;

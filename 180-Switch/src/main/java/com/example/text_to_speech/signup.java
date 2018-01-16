@@ -88,11 +88,11 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                       if(task.isSuccessful())
                       {
                           finish();
-                          Toast.makeText(getApplicationContext(),"Registration Successful!",Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(),R.string.Registration_Successful,Toast.LENGTH_SHORT).show();
                           startActivity(new Intent(getApplicationContext(),login.class));
                       }else
                       {
-                          Toast.makeText(getApplicationContext(),"Registered Failed: Please Check Your Email & Password!",Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(),R.string.Invalid_EIDORPASS,Toast.LENGTH_SHORT).show();
 
                       }
                       progressDialog.hide();
@@ -107,7 +107,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
             initialize();
             if(!validate())
             {
-                Toast.makeText(this,"Signup Has Failed!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,R.string.Signup_Failed,Toast.LENGTH_SHORT).show();
             }
             else
             registerUser();

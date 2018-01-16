@@ -1,13 +1,15 @@
 
-
 //NewGen Coders - Piyush Rana, Tunde Olokun, Kachail Fahmid
 
 package com.example.text_to_speech;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.*;
+import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
@@ -44,9 +46,10 @@ public class text2speech extends AppCompatActivity {
         setContentView(R.layout.activity_text2speech);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,"Welcome To Text-To-Speech Conversion!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.Welcome_t2sConversion,Toast.LENGTH_SHORT).show();
 
         editText = (EditText) findViewById(R.id.editText2);
+
         toSpeech = new TextToSpeech(this,new TextToSpeech.OnInitListener()
         {
             public void onInit(int status)
@@ -54,10 +57,11 @@ public class text2speech extends AppCompatActivity {
                 if(status == TextToSpeech.SUCCESS)
                 {
                     res = toSpeech.setLanguage(Locale.ENGLISH);
+
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Your device doesn't support this feature",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.devicedoesnot_support,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -66,16 +70,29 @@ public class text2speech extends AppCompatActivity {
     public void textTOspeech(View view)
     {
         text = editText.getText().toString();
+//        Intent intent= new Intent(text2speech.this,history.class);
+//        Bundle b = new Bundle();
+//        b.putString("key",text);
+//        intent.putExtra("bundle",b);
+
+        SharedPreferences sPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sPreferences.edit();
+        editor.putString("key", text);
+
+        editor.commit();
+
         switch(view.getId()) {
 
             case R.id.Listen:
                 if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Toast.makeText(getApplicationContext(), "Your device doesn't support this feature", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.devicedoesnot_support, Toast.LENGTH_SHORT).show();
 
                 } else {
 
                     toSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                     toSpeech.setSpeechRate(1f);
+
                 }
                 break;
             case R.id.Stop:
@@ -89,7 +106,7 @@ public class text2speech extends AppCompatActivity {
                 {
                     Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
-                   // String shareBody = "Here is the share content body";
+                    // String shareBody = "Here is the share content body";
                     sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
                     sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);
                     startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -180,7 +197,5 @@ public class text2speech extends AppCompatActivity {
     }
 
 }
-
-
 
 

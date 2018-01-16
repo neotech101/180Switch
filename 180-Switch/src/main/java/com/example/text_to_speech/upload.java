@@ -10,6 +10,7 @@ import android.content.Intent;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -41,6 +42,8 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.Locale;
 
 public class upload extends AppCompatActivity implements View.OnClickListener {
 
@@ -108,7 +111,7 @@ public class upload extends AppCompatActivity implements View.OnClickListener {
     public void selectData()
     {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getApplicationContext(), "Call for Permission", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.call_forperm, Toast.LENGTH_SHORT).show();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE);
             }
@@ -123,14 +126,14 @@ public class upload extends AppCompatActivity implements View.OnClickListener {
 
         if(mName.isEmpty())
         {
-            Toast.makeText(upload.this, "Fill all the field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(upload.this, R.string.Fill_field, Toast.LENGTH_SHORT).show();
             return;
         }
 
         Firebase childRef_name = mRoofRef.child("File_Title");
         childRef_name.setValue(mName);
 //
-        Toast.makeText(upload.this, "Updated Info", Toast.LENGTH_SHORT).show();
+        Toast.makeText(upload.this, R.string.Updated_info, Toast.LENGTH_SHORT).show();
 
     }
 //
@@ -181,12 +184,14 @@ public class upload extends AppCompatActivity implements View.OnClickListener {
                             .diskCacheStrategy(DiskCacheStrategy.RESULT)
                             .into(myImage);
 
-                    Toast.makeText(upload.this, "Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(upload.this, R.string.Updated, Toast.LENGTH_SHORT).show();
                     mProgressDialog.dismiss();
                 }
             });
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,6 +204,7 @@ public class upload extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 finish();
                 return true;
