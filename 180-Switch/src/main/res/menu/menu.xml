@@ -2,6 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--English to Fench-->
+    <item
+        android:id="@+id/language_en"
+        android:title="English"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/language_fr"
+        android:title="French"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/mic"
@@ -14,7 +23,7 @@
         app:showAsAction="never"/>
 
     <item android:id="@+id/out"
-        android:title="Logout"
+        android:title="@string/out"
         app:showAsAction="never"
         />
     <item

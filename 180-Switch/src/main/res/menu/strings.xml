@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">180Switch</string>
+    <string name="mic_icon">mic_icon</string>
+    <string name="help_label">Aidez-moi</string>
+    <string name="exit">Sortie?</string>
+    <string name="name">Identifiant de l\'utilisateur</string>
+    <string name="out">Connectez - Out</string>
+    <string name="nameinfo">informations sur le nom</string>
+    <string name="ok">D\'accord</string>
+    <string name="yes">Oui</string>
+    <string name="exitCon">Voulez-vous sortir?</string>
+    <string name="no">non</string>
+    <string name="next">PROCHAIN</string>
+    <string name="skip">SAUTER</string>
+    <string name="start">JE L\'AI</string>
+    <string name="slide_1_title">Entraînement quotidien</string>
+    <string name="slide_1_desc">Définissez votre routine d\'entraînement quotidienne en utilisant l'entraîneur</string>
+    <string name="slide_2_title">Techniques de méditation</string>
+    <string name="slide_2_desc">En savoir plus sur les différentes techniques de méditation et les pratiquer</string>
+    <string name="slide_3_title">Diagramme de régime</string>
+    <string name="slide_3_desc">Faites votre tableau de régime avec l\'aide d'experts de la santé</string>
+    <string name="nInfo">nInfo</string>
+    <string name="settings">Paramètres</string>
+    <string name="upload">Télécharger</string>
+    <string name="email">Email-ID</string>
+    <string name="t2s">texte pour parler</string>
+    <string name="s2t">Discours au texte</string>
+    <string name="history">histoire </string>
+    <string name="al_Register_here">Vous n\'avez pas de compte? Inscrivez-vous ici</string>
+    <string name="welcome">Bienvenue à 180Switch</string>
+    <string name="seekbar">Déplacer Seekbar pour définir le volume</string>
+    <string name="sign_in">se connecter</string>
+    <string name="register">registre</string>
+    <string name="login">S\'identifier</string>
+    <string name="file_fetch">Vos fichiers sont récupérés ..</string>
+    <string name="doU_want">Voulez-vous fermer l\application?</string>
+    <string name="file">NOM DU FICHIER</string>
+    <string name="select">SÉLECTIONNER UN FICHIER À TÉLÉCHARGER</string>
+    <string name="data">VOIR LES DONNÉES</string>
+    <!-- Settings -->
+    <string name="welcome_settings">Bienvenue dans les paramètres</string>
+    <string name="Media_Volume">Volume de médias:</string>
+    <!-- Login & Signup -->
+    <string name="PasswordMust_be">Le mot de passe doit être long de 8 caractères!</string>
+    <string name="Please_EnterYourPassword">S\il vous plait entrez votre mot de passe!</string>
+    <string name="Invalid_Email">Email-ID incorrect</string>
+    <string name="Login_HasFailed">La connexion a échoué!</string>
+    <string name="Invalid_EIDORPASS">E-ID ou mot de passe invalide!</string>
+    <string name="Username">Nom d\ utilisateur</string>
+    <string name="Signing_User">Utilisateur de signature</string>
+    <string name="Registration_Successful"> Inscription réussi!</string>
+    <string name="Signup_Failed">L\inscription a échoué!</string>
+    <string name="speak">TAP SUR LE MICRO POUR PARLER</string>
+    <string name="text">Votre texte va ici ...</string>
+    <string name="Register_User">Enregistrement de l\ utilisateur</string>
+    <!-- Text2Speech & Speech2Text-->
+    <string name="Welcome_s2tConversion">Bienvenue à la conversion parole-texte!</string>
+    <string name="Not_possibl">Pas possible</string>
+    <string name="devicedoesnot_support">Votre appareil ne prend pas en charge cette fonctionnalité</string>
+    <string name="Welcome_t2sConversion">Bienvenue sur la conversion Text-To-Speech</string>
+    <!-- upload -->
+    <string name="call_forperm">Appelez pour l\autorisation</string>
+    <string name="Fill_field">Remplissez tout le champ</string>
+    <string name="Updated_info">Informations mises à jour</string>
+    <string name="Uploading_image">
+Téléchargement de l\image ...</string>
+    <string name="Updated">Actualisé</string>
+</resources>
