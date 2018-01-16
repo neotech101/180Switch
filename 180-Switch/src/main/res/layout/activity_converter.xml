@@ -65,7 +65,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/LightPink"
-        android:text="History"
+        android:text="@string/history"
+        android:onClick="History"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -82,7 +83,8 @@
         android:layout_marginStart="40dp"
         android:background="@drawable/rectangle_button"
         android:backgroundTint="@color/DarkRed"
-        android:text="Speech to Text"
+        android:text="@string/s2t"
+        android:onClick="speech2text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button5"
@@ -100,7 +102,8 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/rectangle_button"
         android:backgroundTint="@color/colorAccent"
-        android:text="Text to Speech"
+        android:text="@string/t2s"
+        android:onClick="text2speech"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button3"
@@ -119,7 +122,8 @@
         android:layout_marginTop="72dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/LightBlue"
-        android:text="Upload"
+        android:text="@string/upload"
+        android:onClick="Uploads"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
         tools:layout_constraintBottom_creator="1"
@@ -135,7 +139,8 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/LightGreen"
-        android:text="Settings"
+        android:text="@string/settings"
+        android:onClick="Settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.45"
@@ -146,11 +151,14 @@
 
     </android.support.constraint.ConstraintLayout>
 
+
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
+        app:headerLayout="@layout/header"
+        android:id="@+id/nav_view"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start">
 
-</android.support.design.widget.NavigationView>
+    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
